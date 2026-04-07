@@ -24,12 +24,12 @@ AWS Health reports three types of events:
 * <DNT>**Scheduled changes**</DNT>: Informs you in advance of scheduled activities that might have an impact on AWS services and resources.
 * <DNT>**Notifications**</DNT>: Provides additional information.
 
-Health events will be linked to existing entities for AWS EC2 resources and will inherit all the entity metadata available such as region, availabilityZone, resource tags and more.
+Health events will be linked to existing entities for AWS EC2 resources and will inherit all the entity metadata available such as `region`, `availabilityZone`, resource tags and more.
 
 To see the complete list of attributes available use the `keyset` function:
 
-```
-  FROM AwsHealthNotification SELECT keyset()
+```sql
+FROM AwsHealthNotification SELECT keyset()
 ```
 
 ## Requirements [#requirements]
@@ -63,9 +63,9 @@ To use this integration's data:
 
 ## Events monitoring and alerts [#event-monitoring]
 
-AWS Health events are ingested as <DNT>**AwsHealthNotification**</DNT> events. You can query, create widgets, and define NRQL alert policies based on these events.
+AWS Health events are ingested as <DNT>**`AwsHealthNotification`**</DNT> events. You can query, create widgets, and define NRQL alert policies based on these events.
 
-The following table shows the main attributes available for <DNT>**AwsHealthNotification**</DNT> events:
+The following table shows the main attributes available for `wsHealthNotification*` events:
 
 <table>
   <thead>
@@ -237,6 +237,7 @@ NRQL alert conditions can be defined to receive notifications when health events
 
 For example, the following query monitors any open issues on EC2 by resource:
 
-```
-SELECT uniqueCount(affectedEntityArn) FROM AwsHealthNotification where statusCode = 'open' and eventTypeCategory = 'Issue' and service = 'EC2'
+```sql
+SELECT uniqueCount(affectedEntityArn) FROM AwsHealthNotification 
+WHERE statusCode = 'open' AND eventTypeCategory = 'Issue' AND service = 'EC2'
 ```
