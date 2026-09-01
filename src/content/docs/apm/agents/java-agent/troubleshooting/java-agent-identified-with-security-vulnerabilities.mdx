@@ -31,7 +31,7 @@ Suppress the false positive warnings coming from the `instrumentation` package i
 
 For example, false positives discovered by the `DependencyCheck` project at [github.com/jeremylong/DependencyCheck](https://github.com/jeremylong/DependencyCheck) can be suppressed with:
 
-```jar
+```xml
 <suppress>
     <notes><![CDATA[newrelic-agent false positives due to the instrumentation package]]></notes>
     <filePath regex="true">.*newrelic.*\.jar[\\\/]instrumentation.*\.jar</filePath>
